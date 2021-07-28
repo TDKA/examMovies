@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+
+{% block body %}
+
+
+<div class="container">
+
+
+    <h1 class="my-5 text-center" > Sign UP: </h1>
+
+   <div class="w-50 mx-auto"> 
+    {{ form_start(form) }}
+				
+				{{form_row(form.username)}}
+				{{form_row(form.email)}}
+				{{form_row(form.password)}}
+				{{form_row(form.passwordConfirm)}}
+				
+		
+
+				<button type="submit" class="btn btn-primary">
+                 Sign Up
+                 </button>
+	{{ form_end(form) }} 
+
+    </div>
+</div>
+{% endblock %}

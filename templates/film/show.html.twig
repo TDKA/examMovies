@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Hello PhoneController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+        <a href="{{ path('film') }}" class="btn btn-primary">Go back to all movies</a>
+
+    <div class="row">
+
+    
+     <div class="col-md-12">
+        <div class="card mx-auto" style="width: 18rem;">
+          
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{film.name}}</h5>
+                    <p class="card-text">Description {{film.description}}</p>
+                    <p class="card-text">Producer: {{film.producer}} </p>
+                    <p class="card-text">Author: {{film.userId.username}} </p>
+                   
+
+                     <small> Release Date: {{film.createdAt | date('d/m/Y') }} à {{film.createdAt | date('H:i') }} </small>
+             
+                    {# Edit #}
+                    <a href= "{{ path('editFilm', {id: film.id}) }}" class="btn btn-warning">Edit</a>
+                    {# Delete #}
+                    <a href= "{{ path('deleteFilm', {id: film.id}) }}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class ="col-md-12">
+         <h2 class="my-3 text-center">Give your opinion:</h2>
+          {{ form_start(form) }}
+				
+				{{form_row(form.content)}}
+			
+		
+                <div class="text-center">
+				<button type="submit" class="btn btn-primary mx-auto">
+
+                {% if modeEdition %}
+                    Edit 
+                {% else %}
+                     POST
+                {% endif %}
+                 
+                 </button>
+                 </div>
+
+	{{ form_end(form) }} 
+        </div>
+    </div>
+    <div class="row">
+        <div class ="col-md-12">
+            <h2>Avis for this movie: </h2>
+            {% for impression in film.impressions %}
+                <ul>
+                    <li>{{impression.content}} | <a href= "{{ path('deleteImpression', {id: impression.id}) }}" class="btn btn-danger">Delete</a></li>
+                     
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+ </div>
+</div>
+{% endblock %}

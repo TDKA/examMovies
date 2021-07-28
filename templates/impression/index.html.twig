@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ImpressionController!{% endblock %}
+
+{% block body %}
+
+         {% for impression in impressions %}
+
+            <p>{{impression.content}}</p>
+         {% endfor %}
+
+{% endblock %}

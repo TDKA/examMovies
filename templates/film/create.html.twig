@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+
+{% block body %}
+
+
+<div class="container">
+
+{% if modeEdition %}
+        <h1 class="mx-auto"> Edit this movie NOW </h1>
+{% else %}
+    <h1 class="mx-auto"> Create new movie NOW </h1>
+{% endif %}
+
+    {{ form_start(form) }}
+				
+				{{form_row(form.name)}}
+				{{form_row(form.description)}}
+				{{form_row(form.producer)}}
+				
+		
+
+				<button type="submit" class="btn btn-primary">
+
+                {% if modeEdition %}
+                        <h1> Edit </h1>
+                {% else %}
+                    <h1> Create</h1>
+                {% endif %}
+                 
+                 </button>
+	{{ form_end(form) }} 
+
+
+</div>
+{% endblock %}
